@@ -61,24 +61,32 @@ export const handleCardClick = event => {
 //     cardMode = mode;
 // }
 
+export const handleMouseOutEvent = event => {
+    const { target: { parentNode }, toElement } = event;
+    
+    if (toElement.classList.contains('cards__list')) {
+        parentNode.classList.remove('reloaded')
+    }
+    
+}
+
 export const handleMouseEvent = event => {
     event.preventDefault();
+    
     const { target: { attributes, parentNode }, currentTarget } = event;
     let clickedElementId = attributes['data-id'] ? attributes['data-id'].nodeValue : parentNode.attributes['data-id'] ? parentNode.attributes['data-id'].nodeValue : null;
     setMenuActive(clickedElementId);
-    //let mode = getWorkMode()
     
     if ( currentTarget.classList.contains('categores') ) {
         let chldDataFromData = getDataChldById(clickedElementId);
         renderCardsToDom(chldDataFromData, 'categores');
         currentTarget.classList.remove('categores');
-        currentTarget.classList.add('category');
+        currentTarget.classList.add('category');        
     }
 
     if (event.target.classList.contains('reload')) {
-        console.log(parentNode.parentNode.attributes['data-id'].nodeValue)
-        let parenId = parentNode.parentNode.attributes['data-id'].nodeValue.toString();
         parentNode.parentNode.classList.add('reloaded');
+        document.querySelector('.reloaded').addEventListener("mouseout", handleMouseOutEvent);
     }
     
 }

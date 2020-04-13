@@ -2,7 +2,8 @@ import Card, { CategoryItem } from "./Card";
 import { 
     handleMouseEvent,
     getWorkMode,
-    setWorkMode
+    setWorkMode,
+    handleMouseOutEvent
  } from "./utils";
 //import { data } from './dataList';
 
@@ -23,6 +24,7 @@ class CardsList {
 
     eventListner() {     
         this.cardListContainer.addEventListener("click", handleMouseEvent);
+        //this.cardListContainer.addEventListener("mousemove", handleMouseOutEvent);
     }
 
     renderCardsToDom() {
@@ -37,7 +39,7 @@ class CardsList {
     renderCard(item) {
         let card = null;
         //let mode = 
-        console.log(this.mode)
+        //console.log(this.mode)
         switch (this.mode) {
             case 'categores':
                 card = new Card(item);
