@@ -1,10 +1,13 @@
-import Card, { CategoryItem } from "./Card";
+import Card, { CategoryItem, PlayCard } from "./Card";
 import { 
     handleMouseEvent,
     getWorkMode,
     setWorkMode,
     handleMouseOutEvent
  } from "./utils";
+ import {
+    handlePlayButtonClick
+ } from './play.utils';
 //import { data } from './dataList';
 
 let cardsFromDataList = []
@@ -14,7 +17,8 @@ class CardsList {
     this.data = data;
     this.cardListContainer = document.querySelector("div.cards__list");
     this.mode = 'categores';
-    //this.getWorkMode = this.getWorkMode.bind(this);
+    this.isPlay = false;
+    this.playButton = document.createElement('button');;
     }
 
     init() {
@@ -24,7 +28,7 @@ class CardsList {
 
     eventListner() {     
         this.cardListContainer.addEventListener("click", handleMouseEvent);
-        //this.cardListContainer.addEventListener("mousemove", handleMouseOutEvent);
+        //this.playButton.addEventListener("click", handlePlayButtonClick);
     }
 
     renderCardsToDom() {
@@ -33,26 +37,31 @@ class CardsList {
         cardsFromDataList.map(element => {
             cardListContainer.appendChild(element.getCardTemplate());
         })
+        //let playButtonElem = document.createElement('button');
+        this.isPlay && this.mode === 'category' ? cardListContainer.insertAdjacentElement('beforeend', this.getPlayButton()) : null;
         return cardsFromDataList;
     }
 
     renderCard(item) {
         let card = null;
-        //let mode = 
-        //console.log(this.mode)
         switch (this.mode) {
             case 'categores':
                 card = new Card(item);
                 break;
             case 'category':
-                card = new CategoryItem(item);
+                card = !this.isPlay ? new CategoryItem(item) : new PlayCard(item);
                 break;
         
             default: 
-                //card = new Card(item);
                 break;
-        }
+        }        
         return card;
+    }
+
+    getPlayButton() {
+        let playButton = this.playButton;
+        playButton.innerText = "Start"
+        return playButton;
     }
 
     getCardsFromData() {
@@ -69,7 +78,7 @@ class CardsList {
         let cardListContainer = this.cardListContainer;
         cardListContainer.innerHTML = '';
         cardListContainer.classList = [];
-        cardListContainer.classList.add('cards__list', 'green', this.mode);
+        cardListContainer.classList.add('cards__list', this.mode);        
         //cardListContainer.classList.add(this.mode);
         return cardListContainer;
     }
@@ -82,9 +91,10 @@ class CardsList {
         return this.mode;
     }
 
-
+    setIsPlay(bool) {
+        this.isPlay = bool;
+    }
 
 }
 
 export default CardsList;
-//export { getWorkMode };

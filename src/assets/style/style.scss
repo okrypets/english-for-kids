@@ -154,6 +154,7 @@ header {
             cursor: pointer;
             -webkit-transition: .3s;
             transition: .3s;
+            background: linear-gradient(180deg,#0099ae,#00bf82 40%,#fff 0,#fff);
             img {
                 width: 140px;
                 height: 140px;
@@ -202,7 +203,7 @@ header {
             cursor: pointer;
             transition: box-shadow .25s linear,transform .7s,-webkit-transform .7s;
             transition: .3s;
-            position: relative;
+            position: relative;            
             &.reloaded {
                 transform: rotateY(180deg);
                 .front {
@@ -215,6 +216,15 @@ header {
                     visibility: visible;
                 }
             }
+            &.play_mode {
+                .front {
+                    background-size: inherit;
+                    .reload, 
+                    h2  {
+                        display: none;
+                    }
+                }                
+            }
             .front {
                 height: 100%;
                 position: absolute;
@@ -224,8 +234,8 @@ header {
                 display: flex;
                 align-items: flex-end;
                 justify-content: center;
-                //transition: .3s;     
-                z-index: 1;           
+                transition: background-size .25s linear;
+                z-index: 1;                           
                 .reload {
                     cursor: pointer;
                     background: url(../img/rotate.png) 50% no-repeat;
@@ -238,7 +248,10 @@ header {
                     filter: grayscale(1);          
                     &:hover {
                         filter: none;
-                    }    
+                    }
+                }
+                #audio-player {
+                    display: none;
                 }
             }
             .back {
@@ -263,14 +276,29 @@ header {
                 margin: 0;
                 font-weight: 400;
                 font-size: 1.2em;
-                line-height: 2;
+                line-height: 2;                
             }
             &:hover {
                 box-shadow: 0 10px 20px rgba(0,0,0,.4);
             }
         }
     }
-    
+    button {
+        display: flex;
+        width: 30%;
+        background: linear-gradient(40deg,#ffd86f,#fc6262);
+        min-width: 320px;
+        padding: 1em;
+        font-size: 20px;
+        justify-content: center;
+        text-transform: uppercase;
+        color: #fff;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    audio {
+        display: none;
+    }
 
 }
 

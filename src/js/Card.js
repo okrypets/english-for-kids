@@ -61,12 +61,13 @@ export class CategoryItem extends Card {
         super(cardItem);        
         this.front = document.createElement('div');
         this.back = document.createElement('div');
+        this.audio = cardItem.audioSrc;
     }
 
     getCardTemplate() {
         let cardTemplate = this.card;
         let itemId = this.id
-        cardTemplate.classList.add('card', 'card_item');
+        cardTemplate.classList.add('card', 'card_item', 'word_card');
         cardTemplate.setAttribute('data-id', itemId)
         cardTemplate.append(this.getFrontCard());
         cardTemplate.append(this.getBackCard());
@@ -78,11 +79,12 @@ export class CategoryItem extends Card {
         let front = this.front;
         let name = this.getCardNameTemplate();
         let reload = this.getButtonReload();
+        let audio = this.getAudioElement();
         front.classList.add('front');
-        front.setAttribute('style', `background-image: url(${this.getImageSource()})`)
-        //front.append(this.getCardImgTemplate());
+        front.setAttribute('style', `background-image: url(${this.getImageSource()})`);
         front.append(name);
-        front.appendChild(reload)
+        front.appendChild(reload);
+        front.append(audio)
         return front;
     }
 
@@ -101,4 +103,46 @@ export class CategoryItem extends Card {
         return back;
     }
 
+    getAudioElement() {
+        let audioElement = document.createElement('audio');
+        audioElement.id = 'audio-player';
+        audioElement.controls = 'controls';
+        audioElement.src = `./src/assets/${this.audio}`;
+        audioElement.type = 'audio/mpeg';
+        return audioElement;
+    }
+
+}
+
+export class PlayCard extends Card {
+    constructor(cardItem) {
+        super(cardItem);        
+        this.front = document.createElement('div');
+        this.back = document.createElement('div');
+    }
+
+    getCardTemplate() {
+        let cardTemplate = this.card;
+        let itemId = this.id
+        cardTemplate.classList.add('card', 'card_item', 'word_card', 'play_mode');
+        cardTemplate.setAttribute('data-id', itemId)
+        cardTemplate.append(this.getFrontCard());
+        cardTemplate.append(this.getBackCard());
+
+        return cardTemplate;
+    }
+
+    getFrontCard() {
+        let front = this.front;
+        front.classList.add('front');
+        front.setAttribute('style', `background-image: url(${this.getImageSource()})`);
+        return front;
+    }
+
+    getBackCard() {
+        let back = this.back;
+        back.classList.add('back');
+        back.setAttribute('style', `background-image: url(${this.getImageSource()})`);
+        return back;
+    }
 }
