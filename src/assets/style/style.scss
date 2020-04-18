@@ -11,6 +11,29 @@ body {
     width: 100%;
     max-width: 1680px;
     margin: 0 auto;
+    .system_sound {
+        display: none;
+    }
+}
+
+.stars {
+    display: flex;
+    min-height: 40px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    .star {
+        flex: 0 0 auto;
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        background-size: cover;        
+        &.full {
+            background-image: url('../img/full.svg');
+        }
+        &.empty {
+            background-image: url('../img/empty.svg');
+        }
+    }    
 }
 
 header {
@@ -19,6 +42,10 @@ header {
         position: relative;
         height: 60px;
         .header_menu {
+            @media screen and (max-width: 768px) {
+                max-width: 80%;
+                padding: 6em 1em;
+            }
             &.green {
                 background: linear-gradient(40deg,#00bf82,#0099ae);
             }
@@ -124,6 +151,38 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    img {
+        max-width: 100%;
+    }
+    .play_button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        button {
+            display: flex;
+            width: 30%;
+            background: linear-gradient(40deg,#ffd86f,#fc6262);
+            min-width: 320px;
+            padding: 1em;
+            font-size: 20px;
+            justify-content: center;
+            text-transform: uppercase;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            &.repeat {
+                width: 90px;
+                min-width: 90px;
+                color: transparent;
+                border-radius: 50%;
+                background-image: url(../img/repeat.svg), linear-gradient(40deg, #ffd86f, #fc6262);
+                height: 90px;
+                background-size: 40px,cover;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
     &.categores {
         &.green {
             .card {
@@ -223,7 +282,11 @@ header {
                     h2  {
                         display: none;
                     }
-                }                
+                }     
+                &.disabled {
+                    opacity: 0.5;
+                    cursor: default;
+                }           
             }
             .front {
                 height: 100%;
@@ -283,19 +346,7 @@ header {
             }
         }
     }
-    button {
-        display: flex;
-        width: 30%;
-        background: linear-gradient(40deg,#ffd86f,#fc6262);
-        min-width: 320px;
-        padding: 1em;
-        font-size: 20px;
-        justify-content: center;
-        text-transform: uppercase;
-        color: #fff;
-        border-radius: 10px;
-        cursor: pointer;
-    }
+    
     audio {
         display: none;
     }

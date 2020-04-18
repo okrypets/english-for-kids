@@ -37,8 +37,14 @@ class CardsList {
         cardsFromDataList.map(element => {
             cardListContainer.appendChild(element.getCardTemplate());
         })
-        //let playButtonElem = document.createElement('button');
-        this.isPlay && this.mode === 'category' ? cardListContainer.insertAdjacentElement('beforeend', this.getPlayButton()) : null;
+        
+        if (this.isPlay && this.mode === 'category') {
+            let playButtonContainer = document.createElement('div');
+            playButtonContainer.classList.add('play_button');
+            cardListContainer.insertAdjacentElement('beforeend', playButtonContainer)
+            playButtonContainer.insertAdjacentElement('beforeend', this.getPlayButton())
+        }
+        //this.isPlay && this.mode === 'category' ? cardListContainer.insertAdjacentElement('beforeend', this.getPlayButton()) : null;
         return cardsFromDataList;
     }
 

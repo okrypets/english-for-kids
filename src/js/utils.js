@@ -1,10 +1,7 @@
 import { data } from './dataList';
-//import { renderCardsToDom }  from '../index';
 import CardsList  from "./CardsList";
-import { handleMouseEventPlay, renderPlayButton } from './play.utils.js'
-//import { loadSoundFile, play, stop, BufferLoader } from './audioApi'
-//import {img} from '../assets/'
-//let cardMode = 'categores';
+import { handleMouseEventPlay, resetPlay } from './play.utils.js'
+import { setCategoryData, getRandomSound, renderServiceSound, resetStars } from './play.utils';
 
 let PLAYMODE = false;
 let WORKMODE = 'categores';
@@ -16,11 +13,16 @@ export const toggleMenu = () => {
 
 export const chackboxChanger = event => {
     const { target: { checked } } = event;
-    //console.log(event)
     if ( checked ) {
         PLAYMODE = true;
         setPlayMode();
         changeColorScheme("orange");
+        if (WORKMODE === 'category') {            
+            setCategoryData();
+            getRandomSound(); 
+        }        
+        renderServiceSound();
+               
     } else {
         PLAYMODE = false;
         setTrainMode();
@@ -54,11 +56,22 @@ const changeColorScheme = scheme => {
 
 }
 
+export const goHome = () => {
+    setTimeout( () => {
+        setIsPlay(false);
+        setWorkMode('categores');
+        document.getElementById("checkbox_switcher").checked = false;
+        resetStars();
+        setMenuActive(0);
+        setTrainMode();
+    }, 5000)
+}
+
 const setPlayMode = () => {
     let activeCategoryId = getActiveCtegory();
     let activeData = activeCategoryId !== 0 ? getDataChldById(activeCategoryId) : data;
     renderCardsToDom(activeData, WORKMODE)
-    document.querySelectorAll('.card_item').forEach(it => it.classList.add('play_mode'));
+    resetStars();
     document.querySelector("div.cards__list").removeEventListener("click", handleMouseEvent);
     document.querySelector("div.cards__list").addEventListener("click", handleMouseEventPlay);
 }
@@ -66,6 +79,7 @@ const setPlayMode = () => {
 const setTrainMode = () => {
     let activeCategoryId = getActiveCtegory();
     let activeData = activeCategoryId !== 0 ? getDataChldById(activeCategoryId) : data;
+    document.querySelectorAll('.star').forEach(it => it.remove());
     renderCardsToDom(activeData, WORKMODE)
     document.querySelectorAll('.card_item').forEach(it => it.classList.remove('play_mode'));
     document.querySelector("div.cards__list").removeEventListener("click", handleMouseEventPlay);
@@ -99,11 +113,9 @@ export const handleMouseOutEvent = event => {
 
 export const handleMouseEvent = event => {
     event.preventDefault();
-    //console.log(event);
     const { target: { attributes, parentNode }, currentTarget } = event;
     let clickedElementId = attributes['data-id'] ? attributes['data-id'].nodeValue : parentNode.attributes['data-id'] ? parentNode.attributes['data-id'].nodeValue : null;
-    //setMenuActive(clickedElementId);
-
+    
     if ( currentTarget.classList.contains('categores') ) {
         WORKMODE = 'category';
         setMenuActive(clickedElementId);
@@ -116,9 +128,8 @@ export const handleMouseEvent = event => {
     }
 
     if (event.target.classList.contains('front') || parentNode.classList.contains('front') ) {
-        //console.log(event);
         const { path } = event;
-        if (!event.target.classList.contains('reload')) {
+        if (!event.target.classList.contains('reload') && !PLAYMODE) {
             path.find(it => it.classList.contains('front')).lastChild.play();
         }
 
@@ -142,7 +153,6 @@ export const goToCategory = (catId, currentTarget, isPlay) => {
 }
 
 const renderCardsToDom = ( dataChild, mode ) => {
-    //console.log(dataChild)
         let cardList = new CardsList( dataChild );
         cardList.setWorkMode(WORKMODE);
         cardList.setIsPlay(PLAYMODE);
@@ -172,6 +182,8 @@ export const getDataChldById = id => {
 
 export const handleMenuClick = event => {
     event.preventDefault();
+    
+    document.querySelectorAll('.star').forEach(it => it.remove());
     const { target: { attributes, parentNode }, currentTarget } = event;
     let clickedElementId = parentNode.attributes["data-id"] ? Number(parentNode.attributes["data-id"].nodeValue) : 0;
     if (clickedElementId === 0){
@@ -179,10 +191,10 @@ export const handleMenuClick = event => {
     } else {
         WORKMODE = 'category';
     }
+    
     goToCategory(clickedElementId)
     setMenuActive(clickedElementId);
     toggleMenu();
-    //console.log(currentTarget.parentNode)
 }
 
 export const setMenuActive = elementId => {    
@@ -197,4 +209,8 @@ export const setMenuActive = elementId => {
             classList.add('active');
         }
     })
+    if (PLAYMODE) {
+        resetPlay(elementId);        
+    }
 }
+

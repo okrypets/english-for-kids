@@ -126,131 +126,131 @@ export const data = [
         ]
     },
     {
-        id: 3,
-        img: "drop.jpg",
-        name: "Action C",
-        chld: [
-            { 
-                id: 301,
-              name: 'cat',
-              nameRu: 'кот',
-              img: 'cat.jpg',
-              audioSrc: 'audio/cat.mp3'
-            },
-            { 
-                id: 302,
-              name: 'chick',
-              nameRu: 'цыплёнок',
-              img: 'chick.jpg',
-              audioSrc: 'audio/chick.mp3'
-            },
-            { 
-                id: 303,
-              name: 'chicken',
-              nameRu: 'курица',
-              img: 'chicken.jpg',
-              audioSrc: 'audio/chicken.mp3'
-            },
-            { 
-                id: 304,
-              name: 'dog',
-              nameRu: 'собака',
-              img: 'dog.jpg',
-              audioSrc: 'audio/dog.mp3'
-            },
-            { 
-                id: 305,
-              name: 'horse',
-              nameRu: 'лошадь',
-              img: 'horse.jpg',
-              audioSrc: 'audio/horse.mp3'
-            },
-            { 
-                id: 306,
-              name: 'pig',
-              nameRu: 'свинья',
-              img: 'pig.jpg',
-              audioSrc: 'audio/pig.mp3'
-            },
-            { 
-                id: 307,
-              name: 'rabbit',
-              nameRu: 'кролик',
-              img: 'rabbit.jpg',
-              audioSrc: 'audio/rabbit.mp3'
-            },
-            { 
-                id: 308,
-              name: 'sheep',
-              nameRu: 'овца',
-              img: 'sheep.jpg',
-              audioSrc: 'audio/sheep.mp3'
-            }
-        ]
-    },
+      id: 3,
+      img: "drop.jpg",
+      name: "Action C",
+      chld: [
+          { 
+              id: 401,
+            name: 'argue',
+            nameRu: 'спорить',
+            img: 'argue.jpg',
+            audioSrc: 'audio/argue.mp3'
+          },
+          { 
+              id: 402,
+            name: 'build',
+            nameRu: 'строить',
+            img: 'build.jpg',
+            audioSrc: 'audio/build.mp3'
+          },
+          { 
+              id: 403,
+            name: 'carry',
+            nameRu: 'нести',
+            img: 'carry.jpg',
+            audioSrc: 'audio/carry.mp3'
+          },
+          { 
+              id: 404,
+            name: 'catch',
+            nameRu: 'ловить',
+            img: 'catch.jpg',
+            audioSrc: 'audio/catch.mp3'
+          },
+          { 
+              id:405,
+            name: 'drive',
+            nameRu: 'водить машину',
+            img: 'drive.jpg',
+            audioSrc: 'audio/drive.mp3'
+          },
+          { 
+              id: 406,
+            name: 'drop',
+            nameRu: 'падать',
+            img: 'drop.jpg',
+            audioSrc: 'audio/drop.mp3'
+          },
+          { 
+              id: 407,
+            name: 'pull',
+            nameRu: 'тянуть',
+            img: 'pull.jpg',
+            audioSrc: 'audio/pull.mp3'
+          },
+          { 
+              id: 408,
+            name: 'push',
+            nameRu: 'толкать',
+            img: 'push.jpg',
+            audioSrc: 'audio/push.mp3'
+          }
+      ]
+  },
     {
         id: 4,
         img: "friendly.jpg",
         name: "Adjective",
         chld: [
             { 
-                id: 401,
-              name: 'bird',
-              nameRu: 'птица',
-              img: 'bird.jpg',
-              audioSrc: 'audio/bird.mp3'
+                id: 301,
+              name: 'big',
+              nameRu: 'большой',
+              img: 'big.jpg',
+              audioSrc: 'audio/big.mp3'
             },
             { 
-                id: 402,
-              name: 'fish',
-              nameRu: 'рыба',
-              img: 'fish1.jpg',
-              audioSrc: 'audio/fish.mp3'
+                id: 302,
+              name: 'small',
+              nameRu: 'маленький',
+              img: 'small.jpg',
+              audioSrc: 'audio/small.mp3'
             },
             { 
-                id: 403,
-              name: 'frog',
-              nameRu: 'жаба',
-              img: 'frog.jpg',
-              audioSrc: 'audio/frog.mp3'
+                id: 303,
+              name: 'fast',
+              nameRu: 'быстрый',
+              img: 'fast.jpg',
+              audioSrc: 'audio/fast.mp3'
             },
             { 
-                id: 404,
-              name: 'giraffe',
-              nameRu: 'жирафа',
-              img: 'giraffe.jpg',
-              audioSrc: 'audio/giraffe.mp3'
+                id: 304,
+              name: 'slow',
+              nameRu: 'медленный',
+              img: 'slow.jpg',
+              audioSrc: 'audio/slow.mp3'
             },
             { 
-                id:405,
-              name: 'lion',
-              nameRu: 'лев',
-              img: 'lion.jpg',
-              audioSrc: 'audio/lion.mp3'
+                id: 305,
+              name: 'friendly',
+              nameRu: 'дружелюбный',
+              img: 'friendly.jpg',
+              audioSrc: 'audio/friendly.mp3'
             },
             { 
-                id: 406,
-              name: 'mouse',
-              nameRu: 'мышь',
-              img: 'mouse.jpg',
-              audioSrc: 'audio/mouse.mp3'
+                id: 306,
+              name: 'unfriendly',
+              nameRu: 'недружелюбный',
+              img: 'unfriendly.jpg',
+              audioSrc: 'audio/unfriendly.mp3'
             },
             { 
-                id: 407,
-              name: 'turtle',
-              nameRu: 'черепаха',
-              img: 'turtle.jpg',
-              audioSrc: 'audio/turtle.mp3'
+                id: 307,
+              name: 'young',
+              nameRu: 'мололдой',
+              img: 'young.jpg',
+              audioSrc: 'audio/young.mp3'
             },
             { 
-                id: 408,
-              name: 'dolphin',
-              nameRu: 'дельфин',
-              img: 'dolphin.jpg',
-              audioSrc: 'audio/dolphin.mp3'
+                id: 308,
+              name: 'old',
+              nameRu: 'старый',
+              img: 'old.jpg',
+              audioSrc: 'audio/old.mp3'
             }
         ]
-    },
+    },    
     {
         id: 5,
         img: "cat.jpg",
